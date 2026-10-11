@@ -105,7 +105,7 @@ namespace OpenCertServer.Scep.Tests.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/ScepServer.feature.ndjson", 19);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/ScepServer.feature.ndjson", 23);
         }
         
         async System.Threading.Tasks.ValueTask Xunit.IAsyncLifetime.InitializeAsync()
@@ -772,6 +772,82 @@ namespace OpenCertServer.Scep.Tests.Features
 #line hidden
 #line 123
         await testRunner.AndAsync("no certificate is returned", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.TheoryAttribute(DisplayName="The reply is encrypted with the algorithm of the request")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
+        [global::Xunit.TraitAttribute("Description", "The reply is encrypted with the algorithm of the request")]
+        [global::Xunit.InlineDataAttribute("AES-128-CBC", "17", new string[0])]
+        [global::Xunit.InlineDataAttribute("AES-256-CBC", "18", new string[0])]
+        [global::Xunit.InlineDataAttribute("3DES-CBC", "19", new string[0])]
+        public async global::System.Threading.Tasks.Task TheReplyIsEncryptedWithTheAlgorithmOfTheRequest(string algorithm, string @__pickleIndex, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("algorithm", algorithm);
+            string pickleIndex = @__pickleIndex;
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("The reply is encrypted with the algorithm of the request", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 128
+    this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 129
+        await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 130
+        await testRunner.WhenAsync(string.Format("a client enrolls with the challenge password \"geheim\" and the request encrypted w" +
+                            "ith \"{0}\"", algorithm), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 131
+        await testRunner.ThenAsync("the server answers SUCCESS", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 132
+        await testRunner.AndAsync(string.Format("the reply is encrypted with \"{0}\"", algorithm), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.FactAttribute(DisplayName="A senderNonce that is not 16 bytes is refused")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
+        [global::Xunit.TraitAttribute("Description", "A senderNonce that is not 16 bytes is refused")]
+        public async global::System.Threading.Tasks.Task ASenderNonceThatIsNot16BytesIsRefused()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "20";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A senderNonce that is not 16 bytes is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 141
+    this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 142
+        await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 143
+        await testRunner.WhenAsync("a client enrolls with a senderNonce of 8 bytes", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 144
+        await testRunner.ThenAsync("the server answers HTTP 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
