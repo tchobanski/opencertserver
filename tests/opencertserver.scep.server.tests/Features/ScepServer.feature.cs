@@ -105,7 +105,7 @@ namespace OpenCertServer.Scep.Tests.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/ScepServer.feature.ndjson", 23);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/ScepServer.feature.ndjson", 24);
         }
         
         async System.Threading.Tasks.ValueTask Xunit.IAsyncLifetime.InitializeAsync()
@@ -207,10 +207,50 @@ namespace OpenCertServer.Scep.Tests.Features
             await this.ScenarioCleanupAsync();
         }
         
+        [global::Xunit.FactAttribute(DisplayName="The server publishes the root above an issuing CA")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
+        [global::Xunit.TraitAttribute("Description", "The server publishes the root above an issuing CA")]
+        public async global::System.Threading.Tasks.Task TheServerPublishesTheRootAboveAnIssuingCA()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "2";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("The server publishes the root above an issuing CA", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 18
+    this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 19
+        await testRunner.GivenAsync("a certificate server with SCEP whose CA is issued by a root", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 20
+        await testRunner.WhenAsync("a client asks for the CA certificates", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 21
+        await testRunner.ThenAsync("the first certificate is the RA certificate", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 22
+        await testRunner.AndAsync("the bundle contains the CA certificate", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 23
+        await testRunner.AndAsync("the bundle contains the root certificate", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
         [global::Xunit.TheoryAttribute(DisplayName="Enrollment with the right challenge password")]
         [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
         [global::Xunit.TraitAttribute("Description", "Enrollment with the right challenge password")]
-        [global::Xunit.InlineDataAttribute("rsa", "geheim", "2", new string[0])]
+        [global::Xunit.InlineDataAttribute("rsa", "geheim", "3", new string[0])]
         public async global::System.Threading.Tasks.Task EnrollmentWithTheRightChallengePassword(string profile, string challenge, string @__pickleIndex, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -221,7 +261,7 @@ namespace OpenCertServer.Scep.Tests.Features
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Enrollment with the right challenge password", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 15
+#line 25
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -231,22 +271,22 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 16
+#line 26
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 27
         await testRunner.WhenAsync(string.Format("a client enrolls with the challenge password \"{0}\" using the \"{1}\" profile", challenge, profile), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 28
         await testRunner.ThenAsync("the server answers SUCCESS", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 19
+#line 29
         await testRunner.AndAsync("the response echoes the transaction ID and the client\'s nonce", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 30
         await testRunner.AndAsync("the issued certificate has the requested subject", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 21
+#line 31
         await testRunner.AndAsync(string.Format("the issued certificate is issued by the \"{0}\" CA", profile), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -260,11 +300,11 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "3";
+            string pickleIndex = "4";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("An RSA request against an ECDSA profile is issued by the CA", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 29
+#line 39
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -274,16 +314,16 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 30
+#line 40
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 31
+#line 41
         await testRunner.WhenAsync("a client enrolls with the challenge password \"geheim\" using the \"ecdsa\" profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 32
+#line 42
         await testRunner.ThenAsync("the server answers SUCCESS", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 33
+#line 43
         await testRunner.AndAsync("the issued certificate is issued by the \"ecdsa\" CA", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -297,11 +337,11 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "4";
+            string pickleIndex = "5";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Enrollment through GET", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 35
+#line 45
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -311,13 +351,13 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 36
+#line 46
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 37
+#line 47
         await testRunner.WhenAsync("a client enrolls through GET with the challenge password \"geheim\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 38
+#line 48
         await testRunner.ThenAsync("the server answers SUCCESS", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -331,11 +371,11 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "5";
+            string pickleIndex = "6";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A wrong challenge password is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 40
+#line 50
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -345,16 +385,16 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 41
+#line 51
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 42
+#line 52
         await testRunner.WhenAsync("a client enrolls with the challenge password \"falsch\" using the \"rsa\" profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 43
+#line 53
         await testRunner.ThenAsync("the server answers FAILURE with failInfo badRequest", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 44
+#line 54
         await testRunner.AndAsync("no certificate is returned", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -368,76 +408,8 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "6";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A request without a challenge password is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 46
-    this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 47
-        await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 48
-        await testRunner.WhenAsync("a client enrolls without a challenge password", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 49
-        await testRunner.ThenAsync("the server answers FAILURE with failInfo badRequest", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.FactAttribute(DisplayName="A request encrypted to a key other than the RA is rejected")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
-        [global::Xunit.TraitAttribute("Description", "A request encrypted to a key other than the RA is rejected")]
-        public async global::System.Threading.Tasks.Task ARequestEncryptedToAKeyOtherThanTheRAIsRejected()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "7";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A request encrypted to a key other than the RA is rejected", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 51
-    this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 52
-        await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 53
-        await testRunner.WhenAsync("a client enrolls with a request encrypted to a foreign certificate", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 54
-        await testRunner.ThenAsync("the server rejects the message with HTTP 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.FactAttribute(DisplayName="The user principal name from the request is carried into the certificate")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
-        [global::Xunit.TraitAttribute("Description", "The user principal name from the request is carried into the certificate")]
-        public async global::System.Threading.Tasks.Task TheUserPrincipalNameFromTheRequestIsCarriedIntoTheCertificate()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "8";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("The user principal name from the request is carried into the certificate", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A request without a challenge password is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 56
@@ -454,12 +426,80 @@ namespace OpenCertServer.Scep.Tests.Features
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 58
-        await testRunner.WhenAsync("a client enrolls with a subject alternative name UPN \"anna@example.at\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+        await testRunner.WhenAsync("a client enrolls without a challenge password", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 59
+        await testRunner.ThenAsync("the server answers FAILURE with failInfo badRequest", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.FactAttribute(DisplayName="A request encrypted to a key other than the RA is rejected")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
+        [global::Xunit.TraitAttribute("Description", "A request encrypted to a key other than the RA is rejected")]
+        public async global::System.Threading.Tasks.Task ARequestEncryptedToAKeyOtherThanTheRAIsRejected()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "8";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A request encrypted to a key other than the RA is rejected", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 61
+    this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 62
+        await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 63
+        await testRunner.WhenAsync("a client enrolls with a request encrypted to a foreign certificate", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 64
+        await testRunner.ThenAsync("the server rejects the message with HTTP 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.FactAttribute(DisplayName="The user principal name from the request is carried into the certificate")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
+        [global::Xunit.TraitAttribute("Description", "The user principal name from the request is carried into the certificate")]
+        public async global::System.Threading.Tasks.Task TheUserPrincipalNameFromTheRequestIsCarriedIntoTheCertificate()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "9";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("The user principal name from the request is carried into the certificate", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 66
+    this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 67
+        await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 68
+        await testRunner.WhenAsync("a client enrolls with a subject alternative name UPN \"anna@example.at\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 69
         await testRunner.ThenAsync("the server answers SUCCESS", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 60
+#line 70
         await testRunner.AndAsync("the issued certificate contains the UPN \"anna@example.at\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -473,11 +513,11 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "9";
+            string pickleIndex = "10";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A request for a CA certificate is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 64
+#line 74
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -487,16 +527,16 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 65
+#line 75
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 66
+#line 76
         await testRunner.WhenAsync("a client enrolls asking for basicConstraints CA:TRUE and keyCertSign", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 67
+#line 77
         await testRunner.ThenAsync("the server answers FAILURE with failInfo badRequest", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 68
+#line 78
         await testRunner.AndAsync("no certificate is returned", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -510,11 +550,11 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "10";
+            string pickleIndex = "11";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("The server offers renewal", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 70
+#line 80
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -524,13 +564,13 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 71
+#line 81
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 72
+#line 82
         await testRunner.WhenAsync("a client asks for the CA capabilities", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 73
+#line 83
         await testRunner.ThenAsync("the capabilities include \"Renewal\", \"SHA-256\" and \"AES\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -544,51 +584,8 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "11";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A certificate is renewed with the certificate it replaces", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 77
-    this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 78
-        await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 79
-        await testRunner.AndAsync("a client holding a certificate from the \"rsa\" profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 80
-        await testRunner.WhenAsync("the client renews it with a new key", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 81
-        await testRunner.ThenAsync("the server answers SUCCESS", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-#line 82
-        await testRunner.AndAsync("the renewed certificate has the same subject and a new key", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 83
-        await testRunner.AndAsync("the previous certificate is revoked", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.FactAttribute(DisplayName="A renewal signed with a look-alike certificate is refused")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
-        [global::Xunit.TraitAttribute("Description", "A renewal signed with a look-alike certificate is refused")]
-        public async global::System.Threading.Tasks.Task ARenewalSignedWithALook_AlikeCertificateIsRefused()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "12";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A renewal signed with a look-alike certificate is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A certificate is renewed with the certificate it replaces", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 87
@@ -605,12 +602,55 @@ namespace OpenCertServer.Scep.Tests.Features
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 89
-        await testRunner.WhenAsync("a client renews with a certificate from a look-alike CA of the same name", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+        await testRunner.AndAsync("a client holding a certificate from the \"rsa\" profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 90
-        await testRunner.ThenAsync("the server answers FAILURE with failInfo badRequest", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+        await testRunner.WhenAsync("the client renews it with a new key", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 91
+        await testRunner.ThenAsync("the server answers SUCCESS", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 92
+        await testRunner.AndAsync("the renewed certificate has the same subject and a new key", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 93
+        await testRunner.AndAsync("the previous certificate is revoked", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.FactAttribute(DisplayName="A renewal signed with a look-alike certificate is refused")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
+        [global::Xunit.TraitAttribute("Description", "A renewal signed with a look-alike certificate is refused")]
+        public async global::System.Threading.Tasks.Task ARenewalSignedWithALook_AlikeCertificateIsRefused()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "13";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A renewal signed with a look-alike certificate is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 97
+    this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 98
+        await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 99
+        await testRunner.WhenAsync("a client renews with a certificate from a look-alike CA of the same name", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 100
+        await testRunner.ThenAsync("the server answers FAILURE with failInfo badRequest", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 101
         await testRunner.AndAsync("no certificate is returned", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -624,11 +664,11 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "13";
+            string pickleIndex = "14";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A renewal for another subject is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 93
+#line 103
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -638,19 +678,19 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 94
+#line 104
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 95
+#line 105
         await testRunner.AndAsync("a client holding a certificate from the \"rsa\" profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 96
+#line 106
         await testRunner.WhenAsync("the client renews it for the subject \"CN=Anderes Geraet, O=entra-vpn\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 97
+#line 107
         await testRunner.ThenAsync("the server answers FAILURE with failInfo badRequest", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 98
+#line 108
         await testRunner.AndAsync("no certificate is returned", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -664,11 +704,11 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "14";
+            string pickleIndex = "15";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A renewal with a revoked certificate is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 100
+#line 110
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -678,22 +718,22 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 101
+#line 111
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 102
+#line 112
         await testRunner.AndAsync("a client holding a certificate from the \"rsa\" profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 103
+#line 113
         await testRunner.AndAsync("that certificate is revoked", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 104
+#line 114
         await testRunner.WhenAsync("the client renews it with a new key", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 105
+#line 115
         await testRunner.ThenAsync("the server answers FAILURE with failInfo badRequest", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 106
+#line 116
         await testRunner.AndAsync("no certificate is returned", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -707,11 +747,11 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "15";
+            string pickleIndex = "16";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A replayed transaction is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 109
+#line 119
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -721,19 +761,19 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 110
+#line 120
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 111
+#line 121
         await testRunner.WhenAsync("a client enrolls with the challenge password \"geheim\" using the \"rsa\" profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 112
+#line 122
         await testRunner.AndAsync("the same request is sent again", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 113
+#line 123
         await testRunner.ThenAsync("the server answers FAILURE with failInfo badRequest", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 114
+#line 124
         await testRunner.AndAsync("no certificate is returned", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -747,11 +787,11 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "16";
+            string pickleIndex = "17";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A server without a challenge validator issues nothing", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 118
+#line 128
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -761,16 +801,16 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 119
+#line 129
         await testRunner.GivenAsync("a certificate server with SCEP but no challenge validator", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 120
+#line 130
         await testRunner.WhenAsync("a client enrolls with the challenge password \"geheim\" using the \"rsa\" profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 121
+#line 131
         await testRunner.ThenAsync("the server answers FAILURE with failInfo badRequest", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 122
+#line 132
         await testRunner.AndAsync("no certificate is returned", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -780,9 +820,9 @@ namespace OpenCertServer.Scep.Tests.Features
         [global::Xunit.TheoryAttribute(DisplayName="The reply is encrypted with the algorithm of the request")]
         [global::Xunit.TraitAttribute("FeatureTitle", "Certificate server compliance with SCEP (RFC 8894)")]
         [global::Xunit.TraitAttribute("Description", "The reply is encrypted with the algorithm of the request")]
-        [global::Xunit.InlineDataAttribute("AES-128-CBC", "17", new string[0])]
-        [global::Xunit.InlineDataAttribute("AES-256-CBC", "18", new string[0])]
-        [global::Xunit.InlineDataAttribute("3DES-CBC", "19", new string[0])]
+        [global::Xunit.InlineDataAttribute("AES-128-CBC", "18", new string[0])]
+        [global::Xunit.InlineDataAttribute("AES-256-CBC", "19", new string[0])]
+        [global::Xunit.InlineDataAttribute("3DES-CBC", "20", new string[0])]
         public async global::System.Threading.Tasks.Task TheReplyIsEncryptedWithTheAlgorithmOfTheRequest(string algorithm, string @__pickleIndex, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -792,7 +832,7 @@ namespace OpenCertServer.Scep.Tests.Features
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("The reply is encrypted with the algorithm of the request", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 127
+#line 137
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -802,17 +842,17 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 128
+#line 138
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 129
+#line 139
         await testRunner.WhenAsync(string.Format("a client enrolls with the challenge password \"geheim\" and the request encrypted w" +
                             "ith \"{0}\"", algorithm), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 130
+#line 140
         await testRunner.ThenAsync("the server answers SUCCESS", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 131
+#line 141
         await testRunner.AndAsync(string.Format("the reply is encrypted with \"{0}\"", algorithm), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -826,11 +866,11 @@ namespace OpenCertServer.Scep.Tests.Features
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "20";
+            string pickleIndex = "21";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("A senderNonce that is not 16 bytes is refused", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 140
+#line 150
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -840,13 +880,13 @@ namespace OpenCertServer.Scep.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 141
+#line 151
         await testRunner.GivenAsync("a certificate server that complies with SCEP (RFC 8894)", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 142
+#line 152
         await testRunner.WhenAsync("a client enrolls with a senderNonce of 8 bytes", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 143
+#line 153
         await testRunner.ThenAsync("the server answers HTTP 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
